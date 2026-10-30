@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Outfit, Poppins } from "next/font/google";
-
+import Sidebar from "@/components/Sidebar";
 /* Outfit is the font name , and a function that we call it here and we send to it an object with the font settings as an argument , 
 and this function will return  this object and save it the variable we created*/
 
@@ -38,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.variable} ${poppins.variable} antialiased`}>
+        <Sidebar />
         {children}
       </body>
     </html>

@@ -2,7 +2,9 @@
 
 /*theme means to make tailwind create a class automatic in it */
 
-/*font-outfit this is the name of the varable  , var is a css function that will get the value of this variable from the body*/
+/*font-outfit this is the name of the varable  , var is a css function that will get the value of this variable from the next*/
+
+/* the name on the wright could be changed , but the name on the left must be the same variable name to can reach it's value*/
 
 @theme {
   --font-outfit: var(--font-outfit);
