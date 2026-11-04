@@ -13,6 +13,7 @@ import {
   ArrowLeftRight,
   Wallet,
   ChartNoAxesColumnIncreasing,
+  LogOut,
 } from "lucide-react";
 
 // () we use this Parentheses to can write a jsx code
@@ -67,7 +68,7 @@ export default function Sidebar() {
         </p>
       </div>
 
-      <div className="flex flex-col gap-7 mt-12 pl-12">
+      <div className="flex flex-col gap-7 mt-14 pl-12">
         {pages.map((page) => {
           // this variable name must be capital as it wil store a component , so to be able to use it later
 
@@ -101,6 +102,14 @@ export default function Sidebar() {
           );
         })}
       </div>
+
+      <Link href={"/login"} className=" mt-64 pl-12 flex gap-7 items-center">
+        <LogOut className="w-6 h-6 text-[#FE981E]" />
+
+        <span className="font-outfit font-medium text-base leading-normal text-[#FE981E]">
+          Log out
+        </span>
+      </Link>
     </div>
   );
 }

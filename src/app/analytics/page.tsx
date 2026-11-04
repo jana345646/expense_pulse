@@ -1,3 +1,3 @@
-export default function transictions() {
+export default function Analytics() {
   return <p>analytics page</p>;
 }
