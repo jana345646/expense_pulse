@@ -15,6 +15,7 @@ import {
   ChartNoAxesColumnIncreasing,
   LogOut,
 } from "lucide-react";
+import Logo from "./Logo";
 
 // () we use this Parentheses to can write a jsx code
 
@@ -58,16 +59,9 @@ export default function Sidebar() {
 
   return (
     <div className="w-2xs h-screen rounded-tr-3xl rounded-br-3xl bg-[#0F123F]">
-      <div className="pt-16 pl-10 flex items-center gap-3">
-        <div className="w-14 h-14 rounded-2xl bg-[#FE981E] relative flex items-center justify-center">
-          <p className="text-white font-bold text-3xl z-10 font-outfit">E</p>
-          <div className="w-7 h-7 rounded-tr-xl rounded-bl-xl bg-[#FFBB6A] absolute bottom-0 left-0"></div>
-        </div>
-        <p className="text-white font-outfit font-medium text-xl leading-none tracking-tight">
-          ExpensePulse
-        </p>
+      <div className="pt-16 pl-10">
+        <Logo />
       </div>
-
       <div className="flex flex-col gap-7 mt-14 pl-12">
         {pages.map((page) => {
           // this variable name must be capital as it wil store a component , so to be able to use it later
@@ -106,9 +100,9 @@ export default function Sidebar() {
       <Link href={"/login"} className=" mt-64 pl-12 flex gap-7 items-center">
         <LogOut className="w-6 h-6 text-[#FE981E]" />
 
-        <span className="font-outfit font-medium text-base leading-normal text-[#FE981E]">
+        <p className="font-outfit font-medium text-base leading-normal text-[#FE981E]">
           Log out
-        </span>
+        </p>
       </Link>
     </div>
   );
