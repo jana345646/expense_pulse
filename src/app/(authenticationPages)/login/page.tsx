@@ -20,7 +20,11 @@ import { loginSchema, loginFormData } from "@/schemas/loginSchema";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, Eye, EyeOff } from "lucide-react";
+
+import Link from "next/link";
+
+import { useState } from "react";
 
 export default function Login() {
   // userouter returns an object with the functions we can use to navigate between the pages
@@ -58,6 +62,12 @@ export default function Login() {
 
   // split will divide the email to two pieces in an aarray brfore and after the @
 
+  // we use async to simualte that this function will take time to be rendered
+
+  // setTimeOut donn;t return a promise and we cant use await without a promise so we cretae a promise with new keyword
+
+  // resolve is a built in function which tells the promise that the function is done and to continue the rest of the code
+
   const onSubmit = async (formData: loginFormData) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 400));
@@ -80,6 +90,8 @@ export default function Login() {
       console.error("invalid login", error);
     }
   };
+
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="w-full h-full flex flex-row px-14 justify-between items-start bg-[#101039] pt-13">
@@ -145,12 +157,15 @@ export default function Login() {
           noValidate
         >
           <label
-            htmlFor=""
+            // htmlfor and id to connect the label with the input as when the user clicksa on the label the cursor will be displayed inside the input
+
+            htmlFor="email"
             className="font-outfit font-normal text-[#17172F] text-sm"
           >
             Email address
           </label>
           <input
+            id="email"
             type="email"
             // ... to can spread the properties that will be returned from the register function (onchange , onblur , name , ref)
 
@@ -162,16 +177,35 @@ export default function Login() {
             <p className="text-red-500 text-xs mb-4">{errors.email.message}</p>
           )}
           <label
-            htmlFor=""
+            htmlFor="password"
             className="font-outfit font-normal text-[#17172F] text-sm"
           >
             Password
           </label>
-          <input
-            type="password"
-            {...register("password")}
-            className="w-full font-outfit p-3 rounded-lg bg-[#F7F7FB] border border-[#E9EAF5] text-[#A0A0B4] text-sm outline-none"
-          />
+          <div className="relative w-full">
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              {...register("password")}
+              className="w-full font-outfit p-3 rounded-lg bg-[#F7F7FB] border border-[#E9EAF5] text-[#A0A0B4] text-sm outline-none"
+            />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              // for the screen readers
+
+              aria-label={showPassword ? "Hide password" : "Show password"}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#85859B] cursor-pointer"
+            >
+              {showPassword ? (
+                <EyeOff className="w-4 h-4" />
+              ) : (
+                <Eye className="w-4 h-4" />
+              )}
+            </button>
+          </div>
+
           {errors.password && (
             <p className="text-red-500 text-xs mt-1">
               {errors.password.message}
@@ -198,10 +232,13 @@ export default function Login() {
           )}
 
           <div className="flex flex-col items-center gap-5">
-            <div className="w-full h-[1px] bg-[#C4C0C0]"></div>
-            <button className="font-outfit font-bold text-md text-[#D47B06] cursor-pointer">
+            <div className="w-full h-[1px] bg-[#C4C0C0] mt-4"></div>
+            <Link
+              className="font-outfit font-bold text-md text-[#D47B06] cursor-pointer"
+              href={"/signup"}
+            >
               New here?
-            </button>
+            </Link>
           </div>
         </form>
       </div>
