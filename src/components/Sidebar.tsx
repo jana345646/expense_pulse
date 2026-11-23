@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import Logo from "./Logo";
 
+import { useAuthStore } from "@/stores/useAuthStore";
+
 // () we use this Parentheses to can write a jsx code
 
 // <> this is a react fragment we use it as any component returns only one element , so we wrap all the elements in it to can return multiple elements
@@ -56,6 +58,8 @@ export default function Sidebar() {
   // we use const as every time we click on a link the whole component will be re-rendered
 
   const pathName = usePathname();
+
+  const logout = useAuthStore((state) => state.logout);
 
   return (
     <div className="w-2xs h-screen rounded-tr-3xl rounded-br-3xl bg-[#0F123F]">
@@ -97,7 +101,11 @@ export default function Sidebar() {
         })}
       </div>
 
-      <Link href={"/login"} className=" mt-64 pl-12 flex gap-7 items-center">
+      <Link
+        href={"/login"}
+        className=" mt-64 pl-12 flex gap-7 items-center"
+        onClick={logout}
+      >
         <LogOut className="w-6 h-6 text-[#FE981E]" />
 
         <p className="font-outfit font-medium text-base leading-normal text-[#FE981E]">

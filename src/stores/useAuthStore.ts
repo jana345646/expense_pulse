@@ -21,7 +21,10 @@ interface User {
 interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
-  login: (userData: User) => void;
+
+  // login function will return an object : 1. success to represent if the login process is done or not done , 2. error: to save the error in it
+
+  login: (userData: User) => { success: boolean; error?: string };
   logout: () => void;
 }
 
@@ -35,17 +38,32 @@ interface AuthState {
 
 // set returns the object that contains the data of the store
 
+// to read the data from the store
+
 // name: this is the name of the key in the locat storage that will save this data under it
 
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       isAuthenticated: false,
 
-      login: (userData) => set({ user: userData, isAuthenticated: true }),
+      login: (userData) => {
+        const currentUser = get().user;
 
-      logout: () => set({ user: null, isAuthenticated: false }),
+        if (currentUser?.email.toLowerCase() === userData.email.toLowerCase()) {
+          set({ isAuthenticated: true });
+          return { success: true };
+        } else {
+          set({ isAuthenticated: false });
+          return {
+            success: false,
+            error: "No account found with this email. Please sign up first",
+          };
+        }
+      },
+
+      logout: () => set({ isAuthenticated: false }),
     }),
     {
       name: "Authentication Data",
