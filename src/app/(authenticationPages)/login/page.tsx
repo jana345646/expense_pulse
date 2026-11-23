@@ -20,6 +20,8 @@ import { loginSchema, loginFormData } from "@/schemas/loginSchema";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { LoaderCircle } from "lucide-react";
+
 export default function Login() {
   // userouter returns an object with the functions we can use to navigate between the pages
 
@@ -33,6 +35,8 @@ export default function Login() {
 
   // const we use it to make a variable for each property we destruct it
 
+  // setError is a function by it we can create an error and store errors
+
   // isSubmitting is a boolean value which tell us if the submitting process is doing now or no
 
   // loginFormData it tells react hook form the structure of the data that must be sent from the form
@@ -42,7 +46,6 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-    // setError is a function by it we can create an error and store errors
     setError,
     formState: { errors, isSubmitting },
   } = useForm<loginFormData>({
@@ -55,8 +58,9 @@ export default function Login() {
 
   // split will divide the email to two pieces in an aarray brfore and after the @
 
-  const onSubmit = (formData: loginFormData) => {
+  const onSubmit = async (formData: loginFormData) => {
     try {
+      await new Promise((resolve) => setTimeout(resolve, 400));
       const result = login({
         email: formData.email,
         name: formData.email.split("@")[0],
@@ -174,13 +178,17 @@ export default function Login() {
             </p>
           )}
           <button
-            className="w-full p-3 rounded-lg bg-[#FF9815] font-bold text-md text-white mt-5 mb-1 cursor-pointer"
+            className="w-full p-3 rounded-lg bg-[#FF9815] font-bold text-md text-white mt-5 mb-1 cursor-pointer flex justify-center"
             // when we click on it this is the event , so the onsumbit will be rendered
 
             type="submit"
             disabled={isSubmitting}
           >
-            Login
+            {isSubmitting ? (
+              <LoaderCircle className="w-5 h-5 animate-spin" />
+            ) : (
+              "login"
+            )}
           </button>
 
           {errors.root && (
@@ -188,8 +196,6 @@ export default function Login() {
               {errors.root.message}
             </p>
           )}
-
-          {isSubmitting ? "loading" : "logged in"}
 
           <div className="flex flex-col items-center gap-5">
             <div className="w-full h-[1px] bg-[#C4C0C0]"></div>
