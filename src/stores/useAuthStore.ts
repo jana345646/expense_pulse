@@ -11,7 +11,7 @@ import { persist } from "zustand/middleware";
 
 interface User {
   email: string;
-  name?: string;
+  name: string;
 }
 
 // this is an interface to the store

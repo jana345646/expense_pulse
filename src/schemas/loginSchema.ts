@@ -24,7 +24,7 @@ export const loginSchema = z.object({
     .min(6, { message: "The password must be at least 6 characters" }),
 });
 
-// creating a type for the schema , infer is a method that will automatically detect the type of the schema
+// infer is a method that will automatically detect the type of the schema
 
 // we use type because we export the type of the schema automatically and type is used with the =
 // but interface is not used with the = and we use it with the object that we write it manually only

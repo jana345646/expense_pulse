@@ -138,7 +138,7 @@ export default function Login() {
         </p>
       </div>
 
-      <div className="w-xl flex flex-col p-10 bg-white rounded-3xl gap-5">
+      <div className="w-xl flex flex-col pt-10 px-10 bg-white rounded-3xl gap-5">
         <div className="flex flex-col gap-2">
           <p className="font-outfit font-normal text-[#9090A8] text-xs leading-[10px]">
             YOUR DASHBOARD IS READY
@@ -152,7 +152,7 @@ export default function Login() {
         </div>
 
         <form
-          className="flex flex-col gap-2"
+          className="flex flex-col"
           onSubmit={handleSubmit(onSubmit)}
           noValidate
         >
@@ -170,15 +170,15 @@ export default function Login() {
             // ... to can spread the properties that will be returned from the register function (onchange , onblur , name , ref)
 
             {...register("email")}
-            className="w-full font-outfit p-3 rounded-lg bg-[#F7F7FB] border border-[#E9EAF5] text-[#A0A0B4] text-xs outline-none mb-1"
+            className="w-full font-outfit p-3 rounded-lg bg-[#F7F7FB] border border-[#E9EAF5] text-[#A0A0B4] text-xs outline-none my-3"
             placeholder="your.email@expensepulse.com"
           />
           {errors.email && (
-            <p className="text-red-500 text-xs mb-4">{errors.email.message}</p>
+            <p className="text-red-500 text-xs">{errors.email.message}</p>
           )}
           <label
             htmlFor="password"
-            className="font-outfit font-normal text-[#17172F] text-sm"
+            className="font-outfit font-normal text-[#17172F] text-sm mt-3"
           >
             Password
           </label>
@@ -187,7 +187,7 @@ export default function Login() {
               id="password"
               type={showPassword ? "text" : "password"}
               {...register("password")}
-              className="w-full font-outfit p-3 rounded-lg bg-[#F7F7FB] border border-[#E9EAF5] text-[#A0A0B4] text-sm outline-none"
+              className="w-full font-outfit p-3 rounded-lg bg-[#F7F7FB] border border-[#E9EAF5] text-[#A0A0B4] text-sm outline-none my-3"
             />
 
             <button
@@ -207,9 +207,7 @@ export default function Login() {
           </div>
 
           {errors.password && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.password.message}
-            </p>
+            <p className="text-red-500 text-xs">{errors.password.message}</p>
           )}
           <button
             className="w-full p-3 rounded-lg bg-[#FF9815] font-bold text-md text-white mt-5 mb-1 cursor-pointer flex justify-center"
@@ -226,13 +224,13 @@ export default function Login() {
           </button>
 
           {errors.root && (
-            <p className="text-red-500 text-xs mt-1 text-center">
+            <p className="text-red-500 text-xs text-center">
               {errors.root.message}
             </p>
           )}
 
-          <div className="flex flex-col items-center gap-5">
-            <div className="w-full h-[1px] bg-[#C4C0C0] mt-4"></div>
+          <div className="flex flex-col items-center gap-3 my-4">
+            <div className="w-full h-[1px] bg-[#C4C0C0]"></div>
             <Link
               className="font-outfit font-bold text-md text-[#D47B06] cursor-pointer"
               href={"/signup"}
