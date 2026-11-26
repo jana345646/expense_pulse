@@ -156,6 +156,15 @@ export default function Login() {
           onSubmit={handleSubmit(onSubmit)}
           noValidate
         >
+          {errors.root && (
+            <span
+              role="alert"
+              className="text-center text-md mb-2 rounded-xl border border-red-200 bg-red-50 text-red-700 py-3"
+            >
+              No account found with this email
+            </span>
+          )}
+
           <label
             // htmlfor and id to connect the label with the input as when the user clicksa on the label the cursor will be displayed inside the input
 
@@ -223,19 +232,13 @@ export default function Login() {
             )}
           </button>
 
-          {errors.root && (
-            <p className="text-red-500 text-xs text-center">
-              {errors.root.message}
-            </p>
-          )}
-
           <div className="flex flex-col items-center gap-3 my-4">
             <div className="w-full h-[1px] bg-[#C4C0C0]"></div>
             <Link
               className="font-outfit font-bold text-md text-[#D47B06] cursor-pointer"
               href={"/signup"}
             >
-              New here?
+              Create an account
             </Link>
           </div>
         </form>

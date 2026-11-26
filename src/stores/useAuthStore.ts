@@ -58,7 +58,7 @@ export const useAuthStore = create<AuthState>()(
           set({ isAuthenticated: false });
           return {
             success: false,
-            error: "No account found with this email. Please sign up first",
+            error: "No account found with this email. ",
           };
         }
       },

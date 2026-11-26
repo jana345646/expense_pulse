@@ -103,7 +103,7 @@ export default function Sidebar() {
 
       <Link
         href={"/login"}
-        className=" mt-64 pl-12 flex gap-7 items-center"
+        className=" mt-64 pl-12 flex gap-3 items-center"
         onClick={logout}
       >
         <LogOut className="w-6 h-6 text-[#FE981E]" />
